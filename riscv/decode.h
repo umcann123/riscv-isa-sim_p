@@ -2488,6 +2488,8 @@ for (reg_t i = 0; i < P.VU.vlmax && P.VU.vl != 0; ++i) { \
 #define P_MUL_LOOP_BASE(BIT) \
   require_extension('P'); \
   require(BIT == e8 || BIT == e16 || BIT == e32); \
+  if (xlen == 32) { \
+    require_extension(EXT_ZPSFOPERAND);}\
   reg_t rd_tmp = RD; \
   reg_t rs1 = RS1; \
   reg_t rs2 = RS2; \
@@ -2845,6 +2847,7 @@ for (reg_t i = 0; i < P.VU.vlmax && P.VU.vl != 0; ++i) { \
 
 #define P_64_PROFILE_PARAM(USE_RD, INPUT_PAIR) \
   if (xlen == 32) { \
+    require_extension(EXT_ZPSFOPERAND);\
     rs1 = INPUT_PAIR ? RS1_PAIR : RS1; \
     rs2 = INPUT_PAIR ? RS2_PAIR : RS2; \
     rd = USE_RD ? RD_PAIR : 0; \
@@ -2888,6 +2891,7 @@ for (reg_t i = 0; i < P.VU.vlmax && P.VU.vl != 0; ++i) { \
 
 #define P_64_PROFILE_END() \
   if (xlen == 32) { \
+    require_extension(EXT_ZPSFOPERAND);\
     WRITE_RD_PAIR(rd); \
   } else { \
     WRITE_RD(sext_xlen(rd)); \

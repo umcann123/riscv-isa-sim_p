@@ -244,6 +244,7 @@ typedef enum {
 typedef enum {
   // 65('A') ~ 90('Z') is reserved for standard isa in misa
   EXT_ZFH   = 0,
+  EXT_ZPSFOPERAND,
 } isa_extension_t;
 
 typedef enum {

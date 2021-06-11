@@ -269,7 +269,10 @@ void processor_t::parse_isa_string(const char* str)
       auto ext_str = std::string(ext, end - ext);
       if (ext_str == "zfh") {
         extension_table[EXT_ZFH] = true;
-      } else {
+      } else if (ext_str == "zpsfoperand") {
+        extension_table[EXT_ZPSFOPERAND] = true;
+      
+      }else {
         sprintf(error_msg, "unsupported extension '%s'", ext_str.c_str());
         bad_isa_string(str, error_msg);
       }
